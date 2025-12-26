@@ -11,6 +11,9 @@ function parseContent(content: string) {
   let listItems: string[] = [];
   let inList = false;
   let listType: "ul" | "ol" = "ul";
+  let inCodeBlock = false;
+  let codeBlockLines: string[] = [];
+  let codeLanguage = "";
 
   const flushList = () => {
     if (listItems.length > 0) {
@@ -27,8 +30,41 @@ function parseContent(content: string) {
     }
   };
 
+  const flushCodeBlock = () => {
+    if (codeBlockLines.length > 0) {
+      const codeContent = codeBlockLines.join("\n");
+      elements.push(
+        <pre key={`code-${elements.length}`} className="code-block">
+          <code className={codeLanguage ? `language-${codeLanguage}` : ""}>
+            {codeContent}
+          </code>
+        </pre>
+      );
+      codeBlockLines = [];
+      codeLanguage = "";
+      inCodeBlock = false;
+    }
+  };
+
   lines.forEach((line, index) => {
     const trimmed = line.trim();
+    
+    // Handle code blocks
+    if (trimmed.startsWith("```")) {
+      if (inCodeBlock) {
+        flushCodeBlock();
+      } else {
+        flushList();
+        codeLanguage = trimmed.slice(3).trim();
+        inCodeBlock = true;
+      }
+      return;
+    }
+    
+    if (inCodeBlock) {
+      codeBlockLines.push(line);
+      return;
+    }
 
     // Handle headers
     if (trimmed.startsWith("## ")) {
@@ -96,6 +132,7 @@ function parseContent(content: string) {
   });
 
   flushList();
+  flushCodeBlock();
   return elements;
 }
 

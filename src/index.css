@@ -176,6 +176,18 @@
     @apply underline underline-offset-4 hover:text-muted-foreground transition-colors;
   }
 
+  .prose-journal .code-block {
+    @apply bg-muted p-4 rounded-lg overflow-x-auto my-6;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+    @apply text-sm;
+    line-height: 1.6;
+  }
+
+  .prose-journal .code-block code {
+    @apply text-foreground;
+    font-family: inherit;
+  }
+
   /* Subtle hover animation */
   .hover-lift {
     @apply transition-transform duration-300 ease-out;
