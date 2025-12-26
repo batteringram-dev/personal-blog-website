@@ -72,6 +72,7 @@ jobs:
         run: npm run build
         env:
           VITE_BASE_PATH: ${{ steps.base_path.outputs.path }}
+          NODE_ENV: production
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
