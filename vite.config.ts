@@ -8,7 +8,7 @@ export default defineConfig(({ mode }) => ({
   // GitHub Pages base path
   // Dev: localhost
   // Prod: https://batteringram-dev.github.io/mywebsite/
-  base: mode === "development" ? "/" : "/mywebsite/",
+  base: mode === "development" ? "/" : "/personal-blog-website/",
 
   build: {
     outDir: "docs", // GitHub Pages serves from /docs
