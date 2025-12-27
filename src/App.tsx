@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import About from "./pages/About";
 import Index from "./pages/Index";
 import Post from "./pages/Post";
 import Library from "./pages/Library";
@@ -46,7 +47,8 @@ const App = () => (
       <BrowserRouter basename={basePath}>
         <RedirectHandler />
         <Routes>
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<About />} />
+          <Route path="/blogs" element={<Index />} />
           <Route path="/post/:id" element={<Post />} />
           <Route path="/library" element={<Library />} />
           <Route path="/contact" element={<Contact />} />
