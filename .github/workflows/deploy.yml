@@ -48,7 +48,9 @@ jobs:
         id: base_path
         run: |
           # Manual base path override (uncomment and set if auto-detection doesn't work)
-          # BASE_PATH="/personal-blog-website/"
+          # For custom domains (e.g., sriramkumar.in), use "/"
+          # For GitHub Pages subpath, use "/repo-name/"
+          BASE_PATH="/"
           
           # Check if manual base path is set
           if [ -n "$BASE_PATH" ]; then

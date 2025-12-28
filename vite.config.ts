@@ -6,12 +6,15 @@ import { componentTagger } from "lovable-tagger";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   // Use environment variable if provided, otherwise use mode-based default
-  const basePath = process.env.VITE_BASE_PATH || (mode === "development" ? "/" : "/personal-blog-website/");
+  // For custom domain (sriramkumar.in), use "/"
+  // For GitHub Pages subpath, use "/personal-blog-website/"
+  const basePath = process.env.VITE_BASE_PATH || (mode === "development" ? "/" : "/");
   
   return {
-    // GitHub Pages base path
-    // Dev: localhost
-    // Prod: https://batteringram-dev.github.io/personal-blog-website/
+    // Base path
+    // Dev: localhost -> "/"
+    // Prod (custom domain): sriramkumar.in -> "/"
+    // Prod (GitHub Pages): username.github.io/repo -> "/repo/"
     base: basePath,
 
   build: {
