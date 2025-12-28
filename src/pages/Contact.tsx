@@ -20,9 +20,13 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Using Formspree endpoint - sign up at https://formspree.io to get your endpoint
-      // Replace this URL with your Formspree form endpoint
-      const formEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT || '';
+      // Using Formspree endpoint - set VITE_FORMSPREE_ENDPOINT in .env for local dev
+      // For production, set it as GitHub secret: VITE_FORMSPREE_ENDPOINT
+      const formEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
+      
+      if (!formEndpoint) {
+        throw new Error('Form endpoint not configured. Please set VITE_FORMSPREE_ENDPOINT environment variable.');
+      }
       
       const response = await fetch(formEndpoint, {
         method: 'POST',
@@ -47,9 +51,12 @@ const Contact = () => {
         throw new Error('Failed to send message');
       }
     } catch (error) {
+      console.error('Form submission error:', error);
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again or email me directly at ksriram2001@gmail.com",
+        description: error instanceof Error && error.message.includes('not configured')
+          ? "Contact form is not configured. Please email me directly at ksriram2001@gmail.com"
+          : "Failed to send message. Please try again or email me directly at ksriram2001@gmail.com",
         variant: "destructive",
       });
     } finally {
