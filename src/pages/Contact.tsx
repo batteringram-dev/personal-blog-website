@@ -15,8 +15,10 @@ const Contact = () => {
     message: "",
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    e.stopPropagation();
+    
     setIsSubmitting(true);
 
     try {
@@ -24,7 +26,7 @@ const Contact = () => {
       // For production, set it as GitHub secret: VITE_FORMSPREE_ENDPOINT
       const formEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
       
-      if (!formEndpoint) {
+      if (!formEndpoint || formEndpoint.trim() === '') {
         throw new Error('Form endpoint not configured. Please set VITE_FORMSPREE_ENDPOINT environment variable.');
       }
       
@@ -96,7 +98,7 @@ const Contact = () => {
         </div>
 
         {/* Contact Form */}
-        <form onSubmit={handleSubmit} className="space-y-6 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+        <form onSubmit={handleSubmit} className="space-y-6 animate-fade-in-up" style={{ animationDelay: "0.1s" }} noValidate>
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
               Name
