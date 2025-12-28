@@ -74,6 +74,7 @@ jobs:
         run: npm run build
         env:
           VITE_BASE_PATH: ${{ steps.base_path.outputs.path }}
+          VITE_FORMSPREE_ENDPOINT: ${{ secrets.VITE_FORMSPREE_ENDPOINT }}
           NODE_ENV: production
 
       - name: Setup Pages

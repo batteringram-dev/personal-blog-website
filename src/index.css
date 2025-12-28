@@ -188,6 +188,12 @@
     font-family: inherit;
   }
 
+  /* Image quality improvements for photos */
+  img {
+    image-rendering: auto;
+    -ms-interpolation-mode: bicubic;
+  }
+
   /* Subtle hover animation */
   .hover-lift {
     @apply transition-transform duration-300 ease-out;

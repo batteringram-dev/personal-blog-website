@@ -23,7 +23,7 @@ const About = () => {
                 With expertise in Analytics & Big Data, I've demonstrated success in deriving strategic insights from extensive datasets. I'm committed to leveraging cutting-edge tools to drive data-driven decision-making.
               </p>
               <p className="text-lg text-foreground leading-relaxed">
-                My technical skills include Python, SQL, Apache Spark, MongoDB, Databricks, and cloud platforms like AWS and GCP. I enjoy sharing my learnings through writing about data engineering, AI/ML, and the tools that power modern data infrastructure.
+                I enjoy sharing my learnings through writing about data engineering, AI/ML, and the tools that power modern data infrastructure.
               </p>
               <p className="text-lg text-foreground leading-relaxed">
                 When I'm not building data pipelines or writing code, you'll find me exploring new technologies, contributing to open source, or sharing insights with the data community.
@@ -33,11 +33,12 @@ const About = () => {
 
           {/* Image - Takes 1 column on large screens, centered on mobile */}
           <div className="lg:col-span-1 flex justify-center lg:justify-end order-1 lg:order-2">
-            <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-lg overflow-hidden shadow-lg">
+            <div className="w-64 lg:w-80 aspect-[3/4] rounded-lg overflow-hidden shadow-lg bg-muted">
               <img
                 src="/github-image.JPG"
                 alt="Sriram Kumar"
                 className="w-full h-full object-cover"
+                loading="eager"
                 onError={(e) => {
                   // Fallback if image doesn't load
                   const target = e.target as HTMLImageElement;
